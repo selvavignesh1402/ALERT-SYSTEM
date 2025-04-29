@@ -1,4 +1,5 @@
-import { Tabs } from 'expo-router';
+import { Tabs } from 'expo-router'; 
+import { Ionicons } from '@expo/vector-icons';
 
 export default function TabsLayout() {
   return (
@@ -7,33 +8,38 @@ export default function TabsLayout() {
         headerShown: true,
         headerTitle: 'Alert System',
         headerTitleAlign: 'left',
-        // headerStyle: {
-        //   backgroundColor: '#FFA500', // Orange background
-        // },
         headerTintColor: 'black',
         headerTitleStyle: {
-          fontWeight  : 'semibold',
-          fontSize : 20,
+          fontWeight: '600',
+          fontSize: 20,
         },
       }}
     >
       <Tabs.Screen
-        name="index"            
+        name="index"
         options={{
           title: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" color={color} size={size} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="Alert"            
+        name="Alert"
         options={{
           title: 'Alert',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="alert-circle-outline" color={color} size={size} />
+          ),
         }}
       />
-
       <Tabs.Screen
-        name="ProfileScreen"            
+        name="ProfileScreen"
         options={{
           title: 'Profile',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>

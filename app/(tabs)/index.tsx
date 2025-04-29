@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     resizeMode: 'contain',
-    opacity: 0.4,
+    opacity: 0.2,
     position: 'absolute',
     bottom: 0,
     width: '118%',
-    height: 928,
+    height: 948,
     left: -15
     
   },
@@ -92,8 +92,9 @@ const styles = StyleSheet.create({
     marginTop: -5,
   },
   personImage: {
-    width: '100%',
-    height: '100%',
+    width: '113%',
+    height: '110%',
+    left : -10,
   },
   volunteerCard: {
     backgroundColor: '#ffe9e9',
