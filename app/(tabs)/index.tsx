@@ -1,74 +1,125 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function index() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ImageBackground
+      source={require('../../assets/images/bg-100.png')}
+      style={styles.container}
+      imageStyle={styles.backgroundImage}
+    >
+      
+      <View style={styles.topSection}>
+        <View style={styles.headerText}>
+          <Text style={styles.greeting}>Hello, Rahul!</Text>
+          <Text style={styles.subGreeting}>Stay aware, help find missing people today.</Text>
+        </View>
+
+       
+        <View style={styles.imageContainer}>
+          <Image 
+            source={require('../../assets/images/SayHi!.gif')}
+            style={styles.personImage}
+            resizeMode="contain"
+          />
+        </View>
+      </View>
+
+      {/* Alert Volunteer Card */}
+      <View style={styles.volunteerCard}>
+        <Text style={styles.volunteerTitle}>Become an Alert Volunteer</Text>
+        <Text style={styles.volunteerSubtitle}>
+          Join our network of volunteers to help locate missing persons in your area.
+        </Text>
+        <TouchableOpacity style={styles.learnMoreButton}>
+          <Text style={styles.learnMoreText}>Learn More</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    backgroundColor: '#fff',
+  },
+  backgroundImage: {
+    resizeMode: 'contain',
+    opacity: 0.4,
+    position: 'absolute',
+    bottom: 0,
+    width: '118%',
+    height: 928,
+    left: -15
+    
+  },
+  topSection: {
+    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderCurve: 'circular',
+    borderTopLeftRadius: 12,
+    borderBottomRightRadius: 12,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderEndWidth: 3,
+    borderBottomWidth: 3,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  headerText: {
+    flex: 1,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  greeting: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  subGreeting: {
+    fontSize: 14,
+    color: 'gray',
+    marginTop: 4,
+  },
+  imageContainer: {
+    width: 150,
+    height: 150,
+    marginLeft: 0,
+    marginTop: -5,
+  },
+  personImage: {
+    width: '100%',
+    height: '100%',
+  },
+  volunteerCard: {
+    backgroundColor: '#ffe9e9',
+    padding: 20,
+    borderRadius: 20,
+    marginTop: 30,
+  },
+  volunteerTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  volunteerSubtitle: {
+    fontSize: 14,
+    color: 'gray',
+    marginBottom: 15,
+  },
+  learnMoreButton: {
+    backgroundColor: '#000',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    alignSelf: 'flex-start',
+  },
+  learnMoreText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
