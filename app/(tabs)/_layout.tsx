@@ -18,6 +18,27 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          headerShown:false,
+          title: 'Welcome',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" color={color} size={size} />
+          ),
+        }}
+      />
+
+      {/* <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Welcome',
+          headerShown: false,
+          tabBarStyle: { display:'flex' }, 
+          tabBarButton: () => null, 
+        }}
+      /> */}
+
+      <Tabs.Screen
+        name="Home"
+        options={{
           title: 'Home',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" color={color} size={size} />
@@ -34,6 +55,15 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
+        name="EmergencyContactsScreen "
+        options={{
+          title: 'Info',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="information-circle-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="ProfileScreen"
         options={{
           title: 'Profile',
@@ -42,15 +72,6 @@ export default function TabsLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name="AuthScreen"
-        options={{
-          title: 'Login',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="log-out-outline" color={color} size={size} />
-          ),
-        }}
-      /> */}
     </Tabs>
   );
 }
