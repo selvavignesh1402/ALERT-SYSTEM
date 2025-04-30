@@ -9,168 +9,210 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
+
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function ProfileScreen() {
   const user = {
-    name: 'Bruce Wayne',
+    name: 'Rahul',
     mobile: '+91 9876543210',
-    location: 'Gotham City',
-    email: 'bruce@wayneenterprises.com',
+    location: 'Coimbatore',
+    email: 'Rahul123@gmail.com',
     joinDate: 'January 2020',
-    profileImage: 'https://via.placeholder.com/150',
+    profileImage: '../../assets/images/Frame-27.png',
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* <View style={styles.header}>
-          <Text style={styles.heading}>Your Profile</Text>
-        </View> */}
+      <ImageBackground
+        source={require('../../assets/images/bg-100.png')}
+        style={styles.background}
+        imageStyle={styles.backgroundImage}
+      >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {/* Greeting & Edit Button */}
+          {/* <View style={styles.topSection}>
+            <View>
+              <Text style={styles.greeting}>Welcome back,</Text>
+              <Text style={styles.name}>{user.name.split(' ')[0]}!</Text>
+            </View>
+            <TouchableOpacity style={styles.editButton}>
+              <Ionicons name="settings-outline" size={24} color="#fff" />
+            </TouchableOpacity>
+          </View> */}
 
-<ImageBackground
-      source={require('../../assets/images/bg-100.png')} // adjust path as needed
-      style={styles.background}
-      imageStyle={styles.backgroundImage}
-    >
-      <View style={styles.profileCard}>
-        <Image source={{ uri: user.profileImage }} style={styles.profileImage} />
-        <Text style={styles.name}>{user.name}</Text>
-        <Text style={styles.subtitle}>Member since {user.joinDate}</Text>
-      </View>
-    </ImageBackground>
+          {/* Profile Card */}
+          <View style={styles.profileCard}>
+            <Image source={require('../../assets/images/Frame-27.png')} style={styles.profileImage} />
+            <Text style={styles.userName}>{user.name}</Text>
+            <Text style={styles.subtitle}>Member since {user.joinDate}</Text>
+          </View>
 
-        <View style={styles.infoSection}>
-          <ProfileInfo label="📱 Mobile" value={user.mobile} />
-          <ProfileInfo label="📧 Email" value={user.email} />
-          <ProfileInfo label="📍 Location" value={user.location} />
-        </View>
+          {/* Info Cards */}
+          <View style={styles.infoSection}>
+            <ProfileInfo label="Mobile" value={user.mobile} icon="phone" />
+            <ProfileInfo label="Email" value={user.email} icon="email" />
+            <ProfileInfo label="Location" value={user.location} icon="map-marker" />
+          </View>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Edit Profile</Text>
-        </TouchableOpacity>
+          {/* Action Buttons */}
+          <TouchableOpacity style={styles.editProfileButton}>
+            <Ionicons name="create-outline" size={20} color="#000" style={styles.iconLeft} />
+            <Text style={styles.editProfileText}>Edit Profile</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-      </ScrollView>
+          <TouchableOpacity style={styles.logoutButton}>
+            <MaterialCommunityIcons name="logout" size={20} color="#fff" style={styles.iconLeft} />
+            <Text style={styles.logoutText}>Logout</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
 
-type InfoProps = {
+// Reusable Info Row Component
+interface ProfileInfoProps {
   label: string;
   value: string;
-};
+  icon: string;
+}
 
-const ProfileInfo = ({ label, value }: InfoProps) => (
+const ProfileInfo: React.FC<ProfileInfoProps> = ({ label, value, icon }) => (
   <View style={styles.infoCard}>
-    <Text style={styles.infoLabel}>{label}</Text>
-    <Text style={styles.infoValue}>{value}</Text>
+    <MaterialCommunityIcons name={icon as any} size={20} color="#666" style={styles.infoIcon} />
+    <View>
+      <Text style={styles.infoLabel}>{label}</Text>
+      <Text style={styles.infoValue}>{value}</Text>
+    </View>
   </View>
 );
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FDEEF4',
-  },
-  scrollContainer: {
-    alignItems: 'center',
-    paddingVertical: 40,
-    paddingHorizontal: 20,
-  },
-  header: {
-    marginBottom: 30,
-  },
-  heading: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#472D30',
   },
   background: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   backgroundImage: {
-    resizeMode: 'cover',
-    opacity: 0.2, // Adjust transparency (0 = fully transparent, 1 = fully visible)
+    opacity: 0.1,
+    width: '120%',
+    height: 1000,
+    left: -15,
+    bottom: 0,
   },
-  profileCard: {
-    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-    padding: 20,
-    borderRadius: 20,
+  scrollContainer: {
+    paddingHorizontal: 20,
+    paddingTop: 40,
+    paddingBottom: 100,
+  },
+  topSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
-    elevation: 5,
+    marginBottom: 20,
   },
-  profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 15,
+  greeting: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#ccc',
   },
   name: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
+    color: '#fff',
+  },
+  editButton: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    padding: 12,
+    borderRadius: 50,
+  },
+  profileCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 25,
+    borderRadius: 20,
+    alignItems: 'center',
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.3)',
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: '#fff',
+    marginBottom: 15,
+  },
+  userName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
   },
   subtitle: {
     fontSize: 16,
-    color: '#777',
+    color: 'rgba(0, 0, 0, 0.3)',
   },
   infoSection: {
-    width: '100%',
-    marginTop: 30,
+    marginTop: 25,
   },
   infoCard: {
-    backgroundColor: '#FFF',
-    borderRadius: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
     padding: 16,
-    marginBottom: 15,
-    shadowColor: '#FFC0CB',
+    marginBottom: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
     shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 4 },
     shadowRadius: 6,
     elevation: 3,
+  },
+  infoIcon: {
+    marginRight: 12,
   },
   infoLabel: {
     fontSize: 14,
     color: '#888',
-    marginBottom: 4,
   },
   infoValue: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: '600',
     color: '#333',
   },
-  button: {
+  editProfileButton: {
     marginTop: 20,
-    backgroundColor: '#FF69B4',
+    backgroundColor: '#f0f0f0',
     paddingVertical: 14,
     borderRadius: 25,
-    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '700',
+  editProfileText: {
+    color: '#000',
+    fontWeight: '600',
     fontSize: 16,
   },
   logoutButton: {
     marginTop: 16,
-    backgroundColor: '#FF3B30',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     paddingVertical: 14,
     borderRadius: 25,
-    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   logoutText: {
     color: '#fff',
-    fontWeight: '700',
+    fontWeight: '600',
     fontSize: 16,
+  },
+  iconLeft: {
+    marginRight: 10,
   },
 });

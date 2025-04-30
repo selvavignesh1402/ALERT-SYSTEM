@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
 
 export default function index() {
   return (
@@ -8,7 +8,9 @@ export default function index() {
       style={styles.container}
       imageStyle={styles.backgroundImage}
     >
-      
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+
+
       <View style={styles.topSection}>
         <View style={styles.headerText}>
           <Text style={styles.greeting}>Hello, Rahul!</Text>
@@ -35,6 +37,43 @@ export default function index() {
           <Text style={styles.learnMoreText}>Learn More</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Alert Stats Section */}
+<View style={styles.alertStatsContainer}>
+  <Text style={styles.sectionTitle}>Your Impact</Text>
+  <View style={styles.statsRow}>
+    <View style={[styles.statCard, { backgroundColor: '#fdecef' }]}>
+      <Text style={styles.statNumber}>12</Text>
+      <Text style={styles.statLabel}>Active Alerts</Text>
+    </View>
+    <View style={[styles.statCard, { backgroundColor: '#eafaf1' }]}>
+      <Text style={styles.statNumber}>28</Text>
+      <Text style={styles.statLabel}>Closed Cases</Text>
+    </View>
+    <View style={[styles.statCard, { backgroundColor: '#e8f0fe' }]}>
+      <Text style={styles.statNumber}>3</Text>
+      <Text style={styles.statLabel}>Nearby Alerts</Text>
+    </View>
+  </View>
+</View>
+
+{/* About Platform Section */}
+<View style={styles.aboutContainer}>
+  <Text style={styles.sectionTitle}>How We Help</Text>
+  <View style={styles.aboutCard}>
+    <Image source={require('../../assets/images/Searching.png')} style={styles.aboutImage} />
+    <Text style={styles.aboutText}>We use technology and a community-driven approach to search for missing persons more efficiently.</Text>
+  </View>
+  <View style={styles.aboutCard2}>
+    <Image source={require('../../assets/images/Mental Health.png')} style={styles.aboutImage} />
+    <Text style={styles.aboutText}>Our platform supports families emotionally by connecting them with the right resources.</Text>
+  </View>
+  <View style={styles.aboutCard}>
+    <Image source={require('../../assets/images/Mobile-Marketing.png')} style={styles.aboutImage} />
+    <Text style={styles.aboutText}>We spread alerts through multiple digital channels for faster community reach.</Text>
+  </View>
+</View>
+</ScrollView>
     </ImageBackground>
   );
 }
@@ -46,6 +85,9 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     backgroundColor: '#fff',
   },
+  scrollContainer: {
+    paddingBottom: 50,
+  },  
   backgroundImage: {
     resizeMode: 'contain',
     opacity: 0.2,
@@ -122,5 +164,76 @@ const styles = StyleSheet.create({
   learnMoreText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  alertStatsContainer: {
+    marginTop: 30,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  statCard: {
+    flex: 1,
+    padding: 15,
+    borderRadius: 15,
+    marginHorizontal: 5,
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  statLabel: {
+    fontSize: 14,
+    color: 'gray',
+    marginTop: 4,
+    textAlign: 'center',
+  },
+  aboutContainer: {
+    marginTop: 30,
+  },
+  aboutCard: {
+    backgroundColor: '#fff',
+    padding: 25,
+    borderRadius: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+  },
+  aboutCard2: {
+    backgroundColor: '#fff',
+    padding: 25,
+    borderRadius: 15,
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    marginBottom: 15,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+  },
+  aboutImage: {
+    width: 120,
+    height: 140,
+    marginRight: -8,
+    borderRadius: 10,
+  },
+  aboutText: {
+    flex: 1,
+    fontSize: 14,
+    fontStyle:'italic',
+    fontWeight:'condensed',
+    color: '#333',
   },
 });

@@ -42,6 +42,15 @@ export default function TabsLayout() {
           ),
         }}
       />
+      {/* <Tabs.Screen
+        name="AuthScreen"
+        options={{
+          title: 'Login',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="log-out-outline" color={color} size={size} />
+          ),
+        }}
+      /> */}
     </Tabs>
   );
 }
