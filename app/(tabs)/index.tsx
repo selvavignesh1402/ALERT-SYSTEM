@@ -1,87 +1,95 @@
+// app/index.tsx
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import Swiper from 'react-native-swiper';
+import { useRouter } from 'expo-router';
+
 
 const { width, height } = Dimensions.get('window');
 
-export default function index() {
+export default function WelcomeScreen() {
+    const router = useRouter();
+
+    const handleGetStarted = () => {
+      router.replace('/Home'); 
+    };
+
+
   return (
-    <View style={styles.container}>
-     
-      <Image
-        source={require('../../assets/images/clouds.png')} 
-        style={styles.backgroundImage}
-        resizeMode="contain"
-      />
+    <Swiper loop={false} showsPagination={true} dotColor="#ccc" activeDotColor="#000">
+      {/* Slide 1 */}
+      <View style={styles.slide}>
+        <Image
+          source={require('../../assets/images/clouds.png')}
+          style={styles.bgImage}
+          resizeMode="cover"
+        />
+        <Image
+          source={require('../../assets/images/bg222.png')}
+          style={styles.frontImage}
+          resizeMode="contain"
+        />
+        <Text style={styles.quote}>Safety is within your hands</Text>
+        <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
+          <Text style={styles.buttonText}>Get Started</Text>
+        </TouchableOpacity>
+      </View>
 
-   
-      <Image
-        source={require('../../assets/images/bg222.png')} 
-        style={styles.mainImage}
-        resizeMode="contain"
-      />
-
-    
-      <Text style={styles.quote}>“Safety is within your hands”</Text>
-
-     
-      <TouchableOpacity
-        style={styles.button}
-        // onPress={() => navigation.replace('Home')}
-      >
-        <Text style={styles.buttonText}>Get Started</Text>
-      </TouchableOpacity>
-    </View>
+      {/* Slide 2 */}
+      <View style={styles.slide}>
+        <Image
+          source={require('../../assets/images/clouds.png')}
+          style={styles.bgImage}
+          resizeMode="cover"
+        />
+        <Image
+          source={require('../../assets/images/bg666.png')}
+          style={styles.frontImage}
+          resizeMode="contain"
+        />
+        <Text style={styles.quote}>Stay informed. Stay secure.</Text>
+        <TouchableOpacity style={styles.button} onPress={handleGetStarted}>
+          <Text style={styles.buttonText}>Get Started</Text>
+        </TouchableOpacity>
+      </View>
+    </Swiper>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  slide: {
     flex: 1,
-    backgroundColor: 'fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 30,
-    position: 'relative',
+    padding: 20,
+    backgroundColor: '#fff',
   },
-  backgroundImage: {
+  bgImage: {
     position: 'absolute',
-    width: width * 1.2,
-    height: height * 0.5,
-    top: -100,
+    width: width,
+    height: height,
     opacity: 0.2,
   },
-  mainImage: {
+  frontImage: {
     width: width * 0.8,
     height: height * 0.4,
-    marginBottom: -80,
+    marginBottom: 30,
   },
   quote: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#472D30',
     textAlign: 'center',
-    marginTop: 100,
-    paddingHorizontal: 10,
+    color: '#333',
+    marginBottom: 20,
   },
   button: {
-    backgroundColor: '#FF69B4',
-    paddingVertical: 14,
-    paddingHorizontal: 40,
+    backgroundColor: '#000',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
     borderRadius: 30,
-    marginTop:80,
-    elevation: 3,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: '700',
   },
 });
