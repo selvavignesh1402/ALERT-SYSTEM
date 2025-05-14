@@ -15,7 +15,7 @@ export default function TabsLayout() {
         },
       }}
     >
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index"
         options={{
           headerShown:false,
@@ -24,14 +24,14 @@ export default function TabsLayout() {
             <Ionicons name="home-outline" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
 
       {/* <Tabs.Screen
         name="index"
         options={{
           title: 'Welcome',
           headerShown: false,
-          tabBarStyle: { display:'flex' }, 
+          tabBarStyle: { display:'none' }, 
           tabBarButton: () => null, 
         }}
       /> */}
